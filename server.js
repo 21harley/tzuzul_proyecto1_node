@@ -1,33 +1,35 @@
-///server 
-const express = require('express');
-const path = require("path");
-//const favicon = require('serve-favicon');
-//const template = path.join(__dirname,'template/')
+const express = require('express')
+const path = require("path")
+//const views = path.join(__dirname,'views/')
 
 //Importando las rutas:
-/*
 const userRoutes = require("./routes/users")
-*/
-function template(document){
-    return path.join(__dirname,"template",document)
+const cardRoutes = require("./routes/card")
+
+function views(document){
+    return path.join(__dirname,"views",document)
 }
 
 const app = express()
 
 // Procesos intermedios
 // Middleware
+//Definieno carpeta de arhivos estáticos
+//app.use(express.static(path.join(__dirname,"public")))
+app.use("/public", express.static('./public/'));
+//app.use(express.static(__dirname + '/public'));
 //Convirtiendo el body de la petición
 app.use(express.text()) // Cada vez que se haga uso de la app, se ejecute express.text()
 app.use(express.json()) // Cada vez que se haga uso de la app, se ejecute express.json()
 app.use(express.urlencoded({extended:true})) // Cada vez que se haga uso de la app, se ejecute express.urlencoded()
-app.use(express.static(path.join(__dirname, 'public')));
-//app.use(favicon(__dirname + '/public/noteboot.ico'));
+
 
 //Utilizando las rutas
-//app.use(userRoutes)
+app.use(userRoutes)
+app.use(cardRoutes)
 
 app.get('/',function(peticion,respuesta){
-    return respuesta.sendFile(template("index.html"))
+    return respuesta.sendFile(views("index.html"))
 })
 
 

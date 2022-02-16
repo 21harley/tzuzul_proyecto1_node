@@ -1,131 +1,394 @@
-:root{
-    --color-black:#201F1F;
-    --color-white:#EEEEEE;
-    --color-blueOne:#398AB9;
-    --color-blueTwo:#1C658C;
-    --color-blueThree:#00466B;
-}
+@import "/public/css/styleColor.css";
 
 body{
-    background-color: var(--color-blueThree);
-    padding: 0;
-    margin: 0;
-    transition:transform 0.5s ease,opacity 0.5s ease;
+background-color: var(--color-blueThree);
+padding: 0;
+margin: 0;
+transition:transform 0.5s ease,opacity 0.5s ease;
+width: 100%;
 }
 /*class header y menu*/
 .header{
- background-color: var(--color-blueTwo);
+position: fixed;
+top: 0;
+width: 100%;
+background-color: var(--color-blueTwo);
+height: 50px;
+z-index: 100;
 }
-
 .margin-logo{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: space-between;
 }
-.btn-menu{
-    height: 50px;
-    width: 50px;
-    margin: auto 0px auto 0px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-.logo{
-    height: 75px;
-    width: 100px;
-}
-
-.menu{
-    position: fixed;
-    z-index: 998;
-    top: 100px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;/*evita que exista interativida*/
-    transition:transform 0.5s ease,opacity 0.5s ease;
-    overflow-y: auto;
-}
-.menu-ul{
-    list-style: none;
-    background-color: var(--color-blueThree);
-    color:var(--color-blueOne);
-    padding: 0;
-    margin: 0;
+.A_ruta{
     display: grid;
     place-items: center;
-    height: 100%;
+    margin: auto 0 auto 2%;
+}
+.menu-ul-li .A_ruta{
+    margin: 0;
+  }
+.btn-menu{
+height: 40px;
+width: 40px;
+margin: auto 2% auto 0px;
+background: none;
+border: none;
+cursor: pointer;
+}
+.logo{
+margin: auto 0 auto 2%;
+height: 40px;
+width: 80px;
+}
+.menu{
+position: fixed;
+z-index: 998;
+top: 50px;
+bottom: 0;
+left: 0;
+right: 0;
+width: 100%;
+height: 100vh;
+opacity: 0;
+visibility: hidden;/*evita que exista interativida*/
+transition:transform 0.3s ease,opacity 0.3s ease;
+overflow-y: auto;
+}
+.menu-ul{
+list-style: none;
+background-color: var(--color-blueThree);
+color:var(--color-blueOne);
+padding: 0;
+margin: 0;
+display: grid;
+place-items: center;
+height: 90vh;
 }
 .active{
-   position:fixed;
-   opacity: 1;
-   visibility: visible;
-   transition: 1s all;
-   width: 100%;
+opacity: 1;
+visibility: visible;
+height: 100%;
+background-color: var(--color-blueThree);
+}
+.desative{
+opacity: 0;
 }
 .menu-ul h3{
-    margin: auto auto auto 0;
+margin: auto auto auto 0;
 }
 .menu-ul-li{
-  width: 80%;
-  height: 60px;
-  border-radius: 25px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: var(--color-blueThree);
-  margin: 15px 0px 15px 0px;
+width: 80%;
+height: 45px;
+border-radius: 25px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+background-color: var(--color-blueThree);
+margin: 5px 0px 5px 0px;
 }
-
 .menu-ul-li:hover{
-    background-color: var(--color-blueOne);
+background-color: var(--color-blueOne);
 }
-
 .li-user{
-    height: 50px;
-    width: 50px;
-    margin: auto 10px auto auto;
-    color: var(--color-blueTwo);
+height: 40px;
+width: 40px;
+margin: auto 10px auto auto;
+color: var(--color-blueTwo);
 }
 .logo-user{
-  fill: var(--color-blueTwo);
+fill: var(--color-blueTwo);
 }
 .menu-ul-li:hover .logo-user{
-  fill: var(--color-white);
+fill: var(--color-white);
 }
 .menu-ul-li:hover h3{
-    color: var(--color-white);
-    cursor: pointer;
+color: var(--color-white);
+cursor: pointer;
 }
-
-
+.menu-ul-li a{
+ text-decoration: none;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ color: var(--color-blueOne);
+}
+.menu-ul-li a:hover{
+   color: var(--color-white);
+   cursor: pointer;
+}
+.a:hover .logo-user{
+    fill: var(--color-white);
+}
+.a:hover h3{
+    fill: var(--color-white);
+}
+.redired{
+    display: block;
+}
 /*final style header*/
 
 /*class main*/
+.main-container{
+margin-top: 70px;
+padding: 5px;
+display: grid;
+place-items: center;
+grid-template-columns: repeat(auto-fill,150px);
+gap: 10px;
+height: 70vh;
+}
+.container-users{
+    margin-top: 50px;
+    width: 100%;
+    height: 85vh;
+    overflow-y: auto;
+    display: grid;
+    place-items: center;
+    grid-template-rows: 15% 85%;
+    color: var(--color-white);
+}
+.users{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    grid-template-rows: repeat(auto-fit,minmax(40px,60px));
+    gap: 10px;
+}
+.user-item{
+    background-color: var(--color-blueOne);
+    margin-top: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    width: 80%;
+}
+.user-item p{
+    margin: 0;
+    font-size: 90%;
+    margin-right: auto;
+    width: 100%;
+}
+.user-p{
+  height: 100%;  
+  display: grid;
+}
+.margin-logo-user1{
+    display: grid;
+    place-items: center;
+}
+.margin-btn-add{
+width: 100%;
+display: grid;
+place-items: center;
+}
+.btn-agregar,
+.cerrarForm,
+.agregarForm,
+.editarForm,
+.btn-enviar{
+position: fixed;
+bottom: 20px;
+background: none;
+border: none;
+background-color: var(--color-blueOne);
+width: 100px;
+height: 40px;
+border-radius: 10px;
+margin: 0px auto 0px auto;
+cursor: pointer;
+display: grid;
+place-items: center;
+}
+.cerrarForm,
+.agregarForm,
+.editarForm,
+.btn-agregar{
+position: relative;
+margin-top: 30px;
+color: var(--color-white);
+}
 .btn-agregar{
     position: fixed;
-    background: none;
-    border: none;
-    background-color: var(--color-blueOne);
-    min-width: 120px;
-    border-radius: 10px;
-    top: 85%;
-    right: 0;
-    left: 0;
-    bottom: 8%;
-    margin: auto;
+}
+.btn-agregar{
+    background-color: var(--color-blueTwo);
+}
+.margin-control-form{
+display: grid;
+grid-template-columns: 120px 120px;
+place-items: center;
+}
+.card{
+width: 100%;
+background-color: var(--color-white);
+display: grid;
+place-items: center;
+grid-template-rows: 15% 5% 65% 15%;
+}
+.card-edit,
+.card-eliminar,
+.card-archivar{
+background: none;
+border: none;
+}
+.card-header{
+width: 100%;
+display: grid;
+place-items: center;
+grid-template-columns: 80% 20%;
+}
+.card-header-title{
+height: 20px;
+width: 80px;
+overflow-y: auto;
+}
+
+.card-separador{
+width: 80%;
+}
+.card-body-contenido{
+margin: 0;
+padding: 10px;
+height: 100px;
+overflow-y: auto;
+width: 100%;
+}
+.card-footer{
+    height: 40px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+    place-items: center;
+}
+.eliminar-svg,
+.archivar-svg{
+    width: 24px;
+    height: 24px;
+}
+.formularios-modal{
+position: fixed;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: var(--color-black);
+opacity: 0;
+visibility: hidden;
+z-index: 999;
+display: grid;
+place-items: center;
+}
+.margin-formulario{
+display: grid;
+place-items: center;
+gap: 10px;
+}
+.activeForm{
+opacity: 1;
+visibility: visible;
+height: 100%;
+background-color: var(--color-blueThree);
+}
+
+.form{
+height: 200px;
+display: grid;
+gap: 10px;
+}
+.form-l{
+height: 100px;
+width: 150px;
+}
+.cerrarForm,
+.agregarForm,
+.editarForm{
+height: 30px;
+}
+.eliminar,
+.pencil,
+.archivar{
     cursor: pointer;
 }
 /*final style main*/
 
 /*class footer*/
 .footer{
-    width: 100%;
-    background-color: var(--color-blueOne);
-    height: 30px;
-    position: absolute;
-    bottom: 0;
+width: 100%;
+background-color: var(--color-blueOne);
+height: 30px;
+position: absolute;
+bottom: 0;
+}
+textarea {
+    overflow-y: auto;
+    resize: none;
 }
 /*final style footer*/
+/*medias query*/
+/*
+@media(min-width:662px){
+.header{
+    height: 30px;
+}
+.logo{
+    height: 20px;
+}
+.btn-menu{
+    height: 30px;
+}
+.btn-m{
+    height: 30px;
+}
+.menu{
+    top:30px;
+}
+.li-user{
+    height: 30px;
+}
+.btn-agregar{
+  height: 40px;
+  width: 80px;
+}
+}
+*/
+/*final media query*/
+
+.carga{
+    position: fixed;
+    width: 42px;
+    height: 47px;
+    animation-name: giroCarga;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    background-image: url(../svg/logoNotebook.svg);
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+@keyframes giroCarga{
+    0%{
+        width:0px;
+    }
+    50%{
+      transform: rotate(-180deg);
+      width: 43px;
+    }
+    100%{
+        transform:scaleY(-1);
+        transform: rotate(-360deg);
+        width: 0px;
+    }
+}
+@media (min-width: 700px){
+    .main-container{
+        width: 470px;
+        margin: auto;
+        height: 80vh;
+        margin-top: 50px;
+    }
+    .card{
+        margin: auto;
+    }
+}
