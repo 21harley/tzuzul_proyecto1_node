@@ -157,7 +157,11 @@ function eliminarArchivar(e,tipo){
     .then(response => response.json())
     .then(res => {
         let card=document.querySelector(".ra"+res.id);
-        card.remove()
+        card.classList.add("eliminar-card");
+        let rej=setInterval(()=>{
+            card.remove();
+            clearInterval(rej);
+        },1200,card)
     })
     .catch(error=>{
         alert(error);

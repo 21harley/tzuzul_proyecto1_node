@@ -138,6 +138,20 @@ grid-template-columns: repeat(auto-fill,150px);
 gap: 10px;
 height: 70vh;
 }
+.main-NotFound{
+    position: relative;
+    text-align: center;
+    color: var(--color-white);
+    top: 40px;
+    width: 100%;
+    height: 90%;
+}
+.margin-carga{
+    height: 100px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
 .container-users{
     margin-top: 50px;
     width: 100%;
@@ -149,20 +163,25 @@ height: 70vh;
     color: var(--color-white);
 }
 .users{
-    width: 100%;
-    height: 100%;
+    margin: auto;
+    position: relative;
+    width: 80%;
+    height: 70vh;
+    overflow-y: auto;
     display: grid;
     place-items: center;
-    grid-template-rows: repeat(auto-fit,minmax(40px,60px));
+    grid-template-columns: repeat(auto-fit,minmax(40px,250px));
     gap: 10px;
 }
 .user-item{
+    margin: auto;
     background-color: var(--color-blueOne);
-    margin-top: 10px;
     padding: 10px;
+    overflow-y: auto;
     display: grid;
-    grid-template-columns: 30% 70%;
-    width: 80%;
+    grid-template-rows: 30% 40% 25% 5%;
+    width: 75%;
+    height: 400px;
 }
 .user-item p{
     margin: 0;
@@ -173,6 +192,7 @@ height: 70vh;
 .user-p{
   height: 100%;  
   display: grid;
+  padding: 5px;
 }
 .margin-logo-user1{
     display: grid;
@@ -199,7 +219,8 @@ place-items: center;
 .editarForm,
 .btn-enviar,
 .btn-arch,
-.btn-elim{
+.btn-elim,
+.btn-user{
 position: fixed;
 bottom: 20px;
 background: none;
@@ -218,13 +239,15 @@ place-items: center;
 .editarForm,
 .btn-agregar,
 .btn-arch,
-.btn-elim{
+.btn-elim,
+.btn-user{
 position: relative;
 margin-top: 30px;
 color: var(--color-white);
 }
 .btn-arch,
-.btn-elim{
+.btn-elim,
+.btn-user{
   border-radius: 5px;
   max-width:100px;
   min-width: 50px;
@@ -235,7 +258,8 @@ color: var(--color-white);
 
 }
 .btn-arch:hover,
-.btn-elim:hover{
+.btn-elim:hover,
+.btn-user:hover{
   background-color: var(--color-white);
   color: var(--color-blueThree);
 }
@@ -351,7 +375,7 @@ height: 30px;
     display: grid;
     grid-template-columns: 60% 40%;
     height: 150px;
-    background-color: var(--color-blueOne);
+    background-color: var(--color-blueTwo);
 }
 .card-p{
     padding: 10px;
@@ -363,7 +387,7 @@ height: 30px;
     margin: 0 0 0 5%;
     min-width: 100px;
     height: 20px;
-    color: var(--color-black);
+    color: var(--color-white);
 }
 .margin-btn-arch,
 .margin-btn-elim{
@@ -374,6 +398,19 @@ height: 30px;
 .main-archivo h1,
 .main-eliminar h1{
   margin: 10px 0 0 0;
+}
+.add{
+    position: fixed;
+}
+.margin-user-btn{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    place-items:end;
+}
+.btn-user{
+  margin: 0px auto 0px auto;
+  width: 80%;
 }
 /*final style main*/
 
@@ -427,7 +464,7 @@ textarea {
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
-    background-image: url(../svg/logoNotebook.svg);
+    background-image: url(../svg/logo-invertido.svg);
     background-repeat: repeat-y;
     background-size: cover;
 }
@@ -438,7 +475,7 @@ textarea {
     }
     50%{
       transform: rotate(-180deg);
-      width: 43px;
+      width: 53px;
     }
     100%{
         transform:scaleY(-1);
@@ -446,6 +483,28 @@ textarea {
         width: 0px;
     }
 }
+
+.eliminar-card{
+    animation-name: eliminar;
+    animation-duration: 1s;
+    animation-iteration-count: inherit;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes eliminar{
+    0%{
+      opacity: 1;
+      display: fixed;
+    }
+    50%{
+      opacity: 0.5;
+    }
+    100%{
+      opacity: 0;
+      visibility: hidden;
+    }
+}
+
 @media (min-width: 700px){
     .main-container{
         width: 470px;

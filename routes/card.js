@@ -47,10 +47,10 @@ router.put("/api/updateCard/:id",async (req,res)=>{
     const resp = await cardController.updateCarD(data,Number(id));
     return res.json(resp,id,data)
 })
-router.post("/api/delete/:id",async (req,res)=>{
+router.delete("/api/delete/:id",async (req,res)=>{
     const id = req.params.id
     const user = await cardController.delete(id)
-    return res.json(user)
+    return res.json(user,id)
 })
 // Una alternativa mejor es usar el metodo static de express:
 // router.get("/js/users.js",(req,res)=>{
