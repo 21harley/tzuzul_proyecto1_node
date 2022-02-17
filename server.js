@@ -32,6 +32,9 @@ app.get('/',function(peticion,respuesta){
     return respuesta.sendFile(views("index.html"))
 })
 
+app.use(function(peticion,respuesta) {
+    respuesta.status(404).sendFile(views("NotFound.html"));
+});
 
 app.listen(5000,function(){
     console.log("Funcionando... http://localhost:5000")

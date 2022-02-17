@@ -183,11 +183,23 @@ width: 100%;
 display: grid;
 place-items: center;
 }
+.main-archivo,
+.main-eliminar{
+    position: relative;
+    top: 30px;
+    width: 100%;
+    height: 90vh;
+    display: grid;
+    place-items: center;
+    color: var(--color-white);
+}
 .btn-agregar,
 .cerrarForm,
 .agregarForm,
 .editarForm,
-.btn-enviar{
+.btn-enviar,
+.btn-arch,
+.btn-elim{
 position: fixed;
 bottom: 20px;
 background: none;
@@ -204,13 +216,28 @@ place-items: center;
 .cerrarForm,
 .agregarForm,
 .editarForm,
-.btn-agregar{
+.btn-agregar,
+.btn-arch,
+.btn-elim{
 position: relative;
 margin-top: 30px;
 color: var(--color-white);
 }
-.btn-agregar{
-    position: fixed;
+.btn-arch,
+.btn-elim{
+  border-radius: 5px;
+  max-width:100px;
+  min-width: 50px;
+  position: inherit;
+  margin: 0;
+  background-color: var(--color-blueTwo);
+  height: 60px;
+
+}
+.btn-arch:hover,
+.btn-elim:hover{
+  background-color: var(--color-white);
+  color: var(--color-blueThree);
 }
 .btn-agregar{
     background-color: var(--color-blueTwo);
@@ -309,6 +336,44 @@ height: 30px;
 .pencil,
 .archivar{
     cursor: pointer;
+}
+.cardArch,
+.cardEli{
+    position: relative;
+    width: 100%;
+    height: 90%;
+    overflow-y: auto;
+    display: grid;
+    gap: 10px;
+}
+.cardArch-item,
+.cardElim-item{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 150px;
+    background-color: var(--color-blueOne);
+}
+.card-p{
+    padding: 10px;
+    height: 100%;
+    display: grid;
+}
+.card-p p{
+    overflow-y: auto;
+    margin: 0 0 0 5%;
+    min-width: 100px;
+    height: 20px;
+    color: var(--color-black);
+}
+.margin-btn-arch,
+.margin-btn-elim{
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+.main-archivo h1,
+.main-eliminar h1{
+  margin: 10px 0 0 0;
 }
 /*final style main*/
 

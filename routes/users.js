@@ -17,6 +17,14 @@ router.get('/registro',function(request,response){
     return response.sendFile(views("registro.html"))
 })
 
+router.get('/tema',function(request,response){
+    return response.sendFile(views("tema.html"))
+})
+
+router.get('/creditos',function(request,response){
+    return response.sendFile(views("creditos.html"))
+})
+
 router.post('/registro',async function(request,response){
     //console.log(request.body) // {name: 'Tzuzul Code',email: 'mail@tzuzulcode.com',birthday: '2022-02-07'}
     const persona = request.body

@@ -7,7 +7,7 @@ if(idUser[0].length==1){
     localStorage.setItem("userKey",JSON.stringify(idUser[0]))
     mostrarCard();
 
-}else if(idUser[0]=="/users"){
+}else{
     let key=JSON.parse(localStorage.getItem("userKey"));
     console.log(key);
     if(key){
@@ -49,18 +49,6 @@ document.addEventListener("click",(e)=>{
                 clearInterval(cambio);
             },400);
         }
-    }
-    if(e.target.matches(".deleteM *")||e.target.matches(".menu-ul-li.deleteM")){
-        console.log("hola2");
-    }
-    if(e.target.matches(".archM *")||e.target.matches(".menu-ul-li.archM")){
-        console.log("hola3");
-    }
-    if(e.target.matches(".temaM *")||e.target.matches(".menu-ul-li.temaM")){
-        console.log("hola4");
-    }
-    if(e.target.matches(".credM *")||e.target.matches(".menu-ul-li.credM")){
-        console.log("hola5");
     }
     if(e.target.matches(".margin-btn-add *")){
         activar_formularioModal();
@@ -225,6 +213,7 @@ function activar_formularioModal(data){
     }
 }
 function mostrarCard(){
+    console.log("hola");
     efectoCarga();
     let key=Number(JSON.parse(localStorage.getItem("userKey")));
     if(key!=undefined && (!Number.isNaN(key))){

@@ -11,6 +11,11 @@ class CardController{
         console.log(results)
         return results
     }
+    async selectT(id,con){
+        const results = await database.query(`SELECT * FROM card where id_user=? and state=?`,[id,con]);
+        console.log(results)
+        return results
+    }
 
     async update(data,id){
         const results = await database.query(`UPDATE card SET title=?,date_update=?,data_card=? WHERE id=?`,[data.title,data.date_update,data.data_card,id]);

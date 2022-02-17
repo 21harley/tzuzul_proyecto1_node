@@ -2,14 +2,32 @@ const express = require("express")
 const path = require("path")
 const CardController = require("../controllers/card")
 
+function views(document){
+    return path.join(__dirname,"../","views",document)
+}
+
 const router = express.Router()
 
 // Definiendo el controlador
 const cardController = new CardController()
 
+router.get('/eliminar',function(request,response){
+    return response.sendFile(views("eliminar.html"))
+})
+
+router.get('/archivo',function(request,response){
+    return response.sendFile(views("archivo.html"))
+})
+
 router.post("/api/read/:id",async (req,res)=>{
     const id = req.params.id;
     const card = await cardController.select(id);
+    return res.json(card);
+})
+router.post("/api/read/:id/:con",async (req,res)=>{
+    const id = req.params.id;
+    const con =req.params.con;
+    const card = await cardController.selectT(id,con);
     return res.json(card);
 })
 router.post("/api/insert",async (req,res)=>{
