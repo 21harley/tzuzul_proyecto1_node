@@ -74,6 +74,25 @@
    <main class="container-users">
     <h1>Users</h1>
     <div id="users" class="users"></div>
+    <div class="margin-formulario-modal">
+        <div class="formulario-user">
+            <div class="margin-logo-user1">
+                <svg class="logo-user" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 3.33333C10.965 3.33333 3.33334 10.965 3.33334 20C3.33334 29.035 10.965 36.6667 20 36.6667C29.035 36.6667 36.6667 29.035 36.6667 20C36.6667 10.965 29.035 3.33333 20 3.33333ZM20 11.6667C22.8783 11.6667 25 13.7867 25 16.6667C25 19.5467 22.8783 21.6667 20 21.6667C17.1233 21.6667 15 19.5467 15 16.6667C15 13.7867 17.1233 11.6667 20 11.6667ZM11.49 27.9533C12.985 25.7533 15.4783 24.2867 18.3333 24.2867H21.6667C24.5233 24.2867 27.015 25.7533 28.51 27.9533C26.38 30.2333 23.3583 31.6667 20 31.6667C16.6417 31.6667 13.62 30.2333 11.49 27.9533Z" fill="#EEEEEE"/>
+                </svg>                 
+            </div>
+            <hr>
+            <input name="name" type="text">
+            <input name="email" type="email">
+            <input name="profession" type="text">
+            <select name="gender" id="gender">
+              <option></option>
+              <option>Mujer</option>
+              <option>Hombre</option>
+              <option>Otr@</option>
+            </select>
+        </div>
+    </div>
     <!-- Esto se ejecuta en el navegador -->
     <script>
         fetch("/api/users")
@@ -85,7 +104,7 @@
             let users = document.getElementById("users")
             for(let user of data){
                 users.innerHTML = users.innerHTML + `
-                    <div class="user-item">
+                    <div class="user-item item-${user.id}">
                         <div class="margin-logo-user1">
                              ${
                                  (user.urlImg)
@@ -123,7 +142,11 @@
                     </div>`
             }
         })
-        function consulta(ruta,method,objBoby){
+    function editarUser(){
+
+    }
+
+    function consulta(ruta,method,objBoby){
         const options = {
             method: method,
             headers: {
@@ -144,6 +167,30 @@
                 card.remove();
                 clearInterval(rej);
             },1200,card)
+        })
+        .catch((error)=>{
+            alert(error);
+        })
+    }
+    function consultaES(ruta,method,objBoby){
+        const options = {
+            method: method,
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(objBoby)
+        };
+        fetch(ruta,options)
+        .then(function(respuesta){
+            //console.log(respuesta)
+            return respuesta.json()
+        })
+        .then((data)=>{
+             if(data.length>0){
+                
+             }else{
+                consulta()
+             }
         })
         .catch((error)=>{
             alert(error);
