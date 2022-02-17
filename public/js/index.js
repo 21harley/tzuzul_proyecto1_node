@@ -19,6 +19,11 @@ if(idUser[0].length==1){
 }
 document.addEventListener("click",(e)=>{
     //console.log(e.target.classList)
+    if(e.target.matches(".btn-cerrar-login")){
+        console.log("Hola cerrar")
+        localStorage.removeItem("userKey");
+        window.location.href="/";
+    }
     if(e.target.matches(".btn-menu  *")){
         let btnAdd=document.querySelector(".btn-agregar");
         let menu=document.querySelector(".menu");

@@ -24,6 +24,14 @@ router.post("/api/read/:id",async (req,res)=>{
     const card = await cardController.select(id);
     return res.json(card);
 })
+
+router.post("/api/read/cards/:id",async (req,res)=>{
+    const id = req.params.id;
+    const card = await cardController.select(id);
+    console.log(card,id);
+    return res.json({"id":id,"resultado":card});
+})
+
 router.post("/api/read/:id/:con",async (req,res)=>{
     const id = req.params.id;
     const con =req.params.con;
@@ -49,8 +57,10 @@ router.put("/api/updateCard/:id",async (req,res)=>{
 })
 router.delete("/api/delete/:id",async (req,res)=>{
     const id = req.params.id
+    console.log(id);
     const user = await cardController.delete(id)
-    return res.json(user,id)
+    console.log(user);
+    return res.json(id,user);
 })
 // Una alternativa mejor es usar el metodo static de express:
 // router.get("/js/users.js",(req,res)=>{

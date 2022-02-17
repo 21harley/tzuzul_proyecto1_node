@@ -79,7 +79,8 @@ opacity: 0;
 .menu-ul h3{
 margin: auto auto auto 0;
 }
-.menu-ul-li{
+.menu-ul-li,
+.cerrar-style{
 width: 80%;
 height: 45px;
 border-radius: 25px;
@@ -87,6 +88,9 @@ display: grid;
 grid-template-columns: 1fr 1fr;
 background-color: var(--color-blueThree);
 margin: 5px 0px 5px 0px;
+}
+.cerrar-style{
+    grid-template-columns: 1fr;
 }
 .menu-ul-li:hover{
 background-color: var(--color-blueOne);
@@ -220,7 +224,8 @@ place-items: center;
 .btn-enviar,
 .btn-arch,
 .btn-elim,
-.btn-user{
+.btn-user,
+.btn-cerrar-login{
 position: fixed;
 bottom: 20px;
 background: none;
@@ -240,7 +245,8 @@ place-items: center;
 .btn-agregar,
 .btn-arch,
 .btn-elim,
-.btn-user{
+.btn-user,
+.btn-cerrar-login{
 position: relative;
 margin-top: 30px;
 color: var(--color-white);
@@ -411,6 +417,62 @@ height: 30px;
 .btn-user{
   margin: 0px auto 0px auto;
   width: 80%;
+}
+.margin-formulario-modal{
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blueThree);
+    z-index: 999;
+    display: none;
+    place-items: center;
+    opacity: 0;
+    visibility: 0;
+}
+
+.active-form-edi{
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+    display: grid;
+}
+.desative-form-edi{
+    opacity: 0;
+    display: none;
+}
+
+.formulario-user{
+    display: grid;
+    height: 500px;
+    width: 60%;
+}
+.barra{
+    width: 100%;
+    height: 0.5px;
+    background-color: var(--color-white);
+}
+.user-item-edi,
+.user-item-edi-link{
+    height: 30px;
+    width: 80%;
+}
+.grid-item-input-edit{
+    display: grid;
+    grid-template-columns: 100px 80%;
+    place-items: center;
+}
+.margin-btn-users-edit{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.imgUSer{
+    height: 100px;
+    width: 100px;
+    border-radius: 25px;
+}
+.cerrar-style:hover{
+    background-color: none;
 }
 /*final style main*/
 

@@ -26,21 +26,19 @@ body{
     height: 70px;
 }
 .imput-user{
-    background: none;
     text-align: center;
     border: none;
     border-bottom: 1px solid var(--color-blueOne);
     height: 30px;
     border-bottom: 1px solid vaR(--color-white);
-    color: var(--color-white);
+    color: var(--color-blueThree);
+    border-radius: 25px;
 }
 .imput-user::placeholder{
     font-size: 15px;
-    color: var(--color-white);
+    color: var(--color-blueThree);
 }
-Input:Focus {
-    Background-color:var(--color-blueOne);
-}
+
 .p-registro{
     color:var(--color-white);
 }
@@ -55,25 +53,4 @@ Input:Focus {
 .formularioAdd h2,
 .formularioRegistro h2{
     color: var(--color-white);
-}
-
-.carga{
-    background-color: red;
-    width: 10px;
-    height: 150px;
-    animation-name: giroCarga;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes giroCarga{
-    0%{
-    }
-    50%{
-      transform: rotate(180deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
 }

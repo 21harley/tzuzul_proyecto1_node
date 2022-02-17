@@ -25,6 +25,10 @@ router.get('/creditos',function(request,response){
     return response.sendFile(views("creditos.html"))
 })
 
+router.get('/cerrar',function(request,response){
+    return response.sendFile(views("index.html"))
+})
+
 router.post('/registro',async function(request,response){
     //console.log(request.body) // {name: 'Tzuzul Code',email: 'mail@tzuzulcode.com',birthday: '2022-02-07'}
     const persona = request.body
@@ -60,10 +64,17 @@ router.get("/api/users",async (req,res)=>{
     var users = await userController.readAll()
     return res.json(users)
 })
-router.delete("/api/users/:id",async (req,res)=>{
-    const id = req.params.id
-    var user = await userController.delete(id)
-    return res.json(user)
+router.put("/api/users/update/:id",async (req,res)=>{
+    const id = req.params.id;
+    const data = req.body;
+    const resp = await userController.update(data,Number(id));
+    return res.json(resp,id,data)
+})
+router.delete("/api/users/delete/:id",async (req,res)=>{
+    const id = req.params.id;
+    const user = await userController.delete(id);
+    console.log(user);
+    return res.json({id,user});
 })
 // Una alternativa mejor es usar el metodo static de express:
 // router.get("/js/users.js",(req,res)=>{
