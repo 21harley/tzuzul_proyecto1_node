@@ -50,6 +50,7 @@
                     <h3>Archivo</h3> 
                 </a>
                 </li>
+                <!--
                 <li class="menu-ul-li redired">
                     <a href="/tema">
                         <svg class="li-user" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,6 +59,8 @@
                         <h3>Tema</h3>
                     </a>     
                 </li>
+                -->
+                <!--
                 <li class="menu-ul-li redired">
                     <a href="/creditos">
                         <svg class="li-user" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,6 +70,7 @@
                        <h3>Creditos</h3>
                     </a> 
                 </li>
+                -->
                 <li class="cerrar-style">
                     <button id="Cerrar" class="btn-cerrar-login">Cerrar</button>
                 </li>
@@ -120,7 +124,7 @@
             for(let user of data){
                 users.innerHTML = users.innerHTML + `
                     <div class="user-item item-${user.id}">
-                        <div class="margin-logo-user1">
+                        <div class="margin-logo-user1 imagen-user-cam-${user.id}">
                              ${
                                  (user.urlImg)
                                  ?`
@@ -134,10 +138,10 @@
                              }                   
                         </div>
                         <div class="user-p">
-                            <p class="user-data-${user.id}">Nombre: ${user.name}</p>
-                            <p class="user-data-${user.id}">Email: ${user.email}</p>
-                            <p class="user-data-${user.id}">Profesion:${(user.profession)?user.profession:"falta por registrar"}</p>
-                            <p class="user-data-${user.id}">Genero:${(user.gender)?user.gender:"falta por registrar"}</p>
+                            <p class="user-data-${user.id}" title="name">Nombre: ${user.name}</p>
+                            <p class="user-data-${user.id}" title="email">Email: ${user.email}</p>
+                            <p class="user-data-${user.id}" title="profession">Profesion:${(user.profession)?user.profession:"falta por registrar"}</p>
+                            <p class="user-data-${user.id}" title="gender">Genero:${(user.gender)?user.gender:"falta por registrar"}</p>
                         </div>
                         <div class="margin-user-btn">
                             <button class="btn-user" onclick="efectoMostrar(${user.id})">
@@ -207,6 +211,14 @@
         })
         .then((data)=>{
             console.log(data);
+            let lista=document.querySelectorAll(".user-data-"+data.id);
+            let nombres={"name":"Nombre","email":"Email","profession":"Profesion","gender":"Genero"};
+            lista.forEach((el)=>{
+               let auxTitulo=el.getAttribute("title");
+               el.innerHTML=nombres[auxTitulo]+": \n "+data.data[auxTitulo];
+            })
+            let cambio=document.querySelector(".imagen-user-cam-"+data.id);
+            cambio.innerHTML=` <img src="${data.data.urlImg}" alt="imgUser" class="imgUSer" id="imgU-${data.id}"></img>`
         })
         cerrarModal();
     }

@@ -60,7 +60,7 @@ router.delete("/api/delete/:id",async (req,res)=>{
     console.log(id);
     const user = await cardController.delete(id)
     console.log(user);
-    return res.json(id,user);
+    return res.json({"id":id,"resultado":user});
 })
 // Una alternativa mejor es usar el metodo static de express:
 // router.get("/js/users.js",(req,res)=>{
