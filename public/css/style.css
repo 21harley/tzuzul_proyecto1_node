@@ -474,6 +474,17 @@ height: 30px;
 .cerrar-style:hover{
     background-color: none;
 }
+.input-edit-card{
+    border:none;
+    border-radius: 15px;
+    text-align: start;
+    padding-left: 5%;
+}
+.user-item-edi-link,
+.user-item-edi{
+    border: none;
+    border-radius: 5px;
+}
 /*final style main*/
 
 /*class footer*/

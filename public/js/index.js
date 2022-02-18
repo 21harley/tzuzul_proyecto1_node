@@ -1,13 +1,9 @@
 let botonMenu=document.querySelector(".btn-menu");
 let contador=1;
-let idUser=window.location.pathname.split("/app/").filter((item)=>{if(item.length>0) return item});
+let idUser=window.location.pathname;
 console.log(idUser);
-if(idUser[0].length==1){
-    localStorage.getItem("userKey");
-    localStorage.setItem("userKey",JSON.stringify(idUser[0]))
-    mostrarCard();
-
-}else{
+console.log(localStorage.getItem("userKey"));
+if(localStorage.getItem("userKey")){
     let key=JSON.parse(localStorage.getItem("userKey"));
     console.log(key);
     if(key){
@@ -15,6 +11,16 @@ if(idUser[0].length==1){
         lista.forEach((el)=>{
             el.setAttribute("href","/app/"+key)
         });
+    }
+    if(/app/.test(idUser)){
+        mostrarCard();
+    }
+}else{
+    if(/app/.test(idUser)){
+        idUser=idUser.split("/app/").filter((item)=>{if(item!='') return item});
+        localStorage.getItem("userKey");
+        localStorage.setItem("userKey",JSON.stringify(idUser[0]))
+        mostrarCard();
     }
 }
 document.addEventListener("click",(e)=>{
@@ -73,6 +79,7 @@ document.addEventListener("click",(e)=>{
            titulo=document.querySelector("#tituloM").value,
            texto=document.querySelector("#textAM").value,
            key=JSON.parse(localStorage.getItem("userKey"));
+           console.log(key);
        const options = {
         method: "POST",
         headers: {
@@ -113,35 +120,38 @@ document.addEventListener("click",(e)=>{
             texto=document.querySelector("#textAM").value,
             key=document.querySelector("#vlo").value;
             key=key.split("data")[1];
-            
-            const options = {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    title:titulo,
-                    date_update:fecha,
-                    data_card:texto
+            if(texto.length<45 && titulo.length<45 ){
+                const options = {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        title:titulo,
+                        date_update:fecha,
+                        data_card:texto
+                    })
+                };
+                fetch(("/api/update/"+key), options)
+                .then(response => response.json())
+                .then(res => {
+                    /** Procesar los datos **/
+                   if(res.results.warningStatus==0){
+                    let data=[
+                        res.data.title,
+                        res.data.data_card
+                    ]
+                    cambioDatos(data,".data"+res.id);
+                    }
+                   
                 })
-            };
-            fetch(("/api/update/"+key), options)
-            .then(response => response.json())
-            .then(res => {
-                /** Procesar los datos **/
-               if(res.results.warningStatus==0){
-                let data=[
-                    res.data.title,
-                    res.data.data_card
-                ]
-                cambioDatos(data,".data"+res.id);
-                cerrarModalFormulario();
-                }
-               
-            })
-            .catch(error=>{
-                alert(error);
-            });
+                .catch(error=>{
+                    console.log(error);
+                    //alert(error);
+                });
+            }else{
+                alert("Datos introducidos sobre pasa el limite de 45");
+            }
             cerrarModalFormulario();
     }
 })
