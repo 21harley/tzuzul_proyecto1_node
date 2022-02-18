@@ -485,6 +485,10 @@ height: 30px;
     border: none;
     border-radius: 5px;
 }
+.main-NotFound{
+    height: 90vh;
+    display: grid;
+}
 /*final style main*/
 
 /*class footer*/
@@ -588,4 +592,35 @@ textarea {
     .card{
         margin: auto;
     }
+}
+
+.main-NotFound .carga{
+    width: 100px;
+    height: 100px;
+    animation-name: cargaNotFoun;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    text-align: center;
+}
+
+.carga h1{
+    font-size: 40px;
+}
+@keyframes cargaNotFoun{
+    0%{
+        width:0px;
+    }
+    50%{
+      transform: rotate(-180deg);
+      width: 110px;
+    }
+    100%{
+        transform:scaleY(-1);
+        transform: rotate(-360deg);
+        width: 0px;
+    }
+}
+.NoS{
+    background-color: var(--color-blueOne);
 }

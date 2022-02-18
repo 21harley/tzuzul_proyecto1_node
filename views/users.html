@@ -120,7 +120,9 @@
             return respuesta.json()
         })
         .then(function(data){
-            let users = document.getElementById("users")
+            let users = document.getElementById("users");
+            let key=JSON.parse(localStorage.getItem("userKey"));
+
             for(let user of data){
                 users.innerHTML = users.innerHTML + `
                     <div class="user-item item-${user.id}">
@@ -151,75 +153,85 @@
                                 </svg>
                             Editar
                         </button>
-                        <button class="btn-user" onclick="eliminarUser(${user.id})">
+                        ${
+                            (user.id==key)
+                            ?``
+                            :`
+                            <button class="btn-user" onclick="eliminarUser(${user.id})">
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7.49998 14.2533C7.49998 17.5783 10.0083 20.0867 13.3333 20.0867C16.6583 20.0867 19.1666 17.5783 19.1666 14.2533C19.1666 10.9283 16.6583 8.42 13.3333 8.42C10.0083 8.42 7.49998 10.9283 7.49998 14.2533ZM6.66665 31.6667H23.3333V30C23.3333 25.405 19.595 21.6667 15 21.6667H11.6666C7.07165 21.6667 3.33331 25.405 3.33331 30V31.6667H6.66665Z" fill="#398AB9"/>
                                     <path d="M28.3334 18.3333H27.7778V27C27.7778 27.3536 27.8949 27.6928 28.1032 27.9428C28.3116 28.1929 28.5942 28.3333 28.8889 28.3333H34.4445C34.7392 28.3333 35.0218 28.1929 35.2301 27.9428C35.4385 27.6928 35.5556 27.3536 35.5556 27V18.3333H28.3334ZM30.5556 26.3333H29.4445V20.3333H30.5556V26.3333ZM33.8889 26.3333H32.7778V20.3333H33.8889V26.3333ZM34.2322 16.3333L33.3334 15H30L29.1011 16.3333H26.6667V17.6667H36.6667V16.3333H34.2322Z" fill="#398AB9"/>
                             </svg>
                             Eliminar
-                        </button>
-                    </div>`
+                             </button>
+                            `
+                        }
+                    </div>
+              `
             }
         })
     function eliminarUser(id){
         let resp=confirm("¿Esta Seguro :v no hay vuelta atras x.x ?");
-        console.log(resp);
+        //console.log(resp);
         if(resp){
             consultaES("/api/read/cards/"+id,"POST",{});
         }
     }
     function editarUserAcetar(){
         let datosForm=document.querySelectorAll(".user-item-edi");
-        console.log(datosForm);
+        //console.log(datosForm);
         let objBoby=new Object();
         let im=document.querySelector(".user-item-edi-link"),idUser=0;
-        console.log(im.value);
-        objBoby.urlImg=(im.value.length>0)?im.value:"";
-        datosForm.forEach((el,index)=>{
-            
-            switch(index+1){
-                case 1:
-                    objBoby.name=(el.value)?el.value:"";
-                break;
-                case 2:
-                    objBoby.email=el.value;
-                break;
-                case 3:
-                    objBoby.profession=(el.value!="falta por registrar")?el.value:"";
-                break;
-                case 4:
-                    objBoby.gender=(el.value)?el.value:"";
-                break;
-                case 5:
-                   idUser=el.value;
-                break;
-            }
-            
-            //console.log(el.value);
-        })
-
-        const options = {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(objBoby)
-        };
-        fetch("/api/users/update/"+idUser,options)
-        .then(function(respuesta){
-            return respuesta.json()
-        })
-        .then((data)=>{
-            console.log(data);
-            let lista=document.querySelectorAll(".user-data-"+data.id);
-            let nombres={"name":"Nombre","email":"Email","profession":"Profesion","gender":"Genero"};
-            lista.forEach((el)=>{
-               let auxTitulo=el.getAttribute("title");
-               el.innerHTML=nombres[auxTitulo]+": \n "+data.data[auxTitulo];
+        //console.log(im.value);
+        if(im.value.length<500){
+            objBoby.urlImg=(im.value.length>0)?im.value:"";
+            datosForm.forEach((el,index)=>{
+                switch(index+1){
+                    case 1:
+                        objBoby.name=(el.value)?el.value:"";
+                    break;
+                    case 2:
+                        objBoby.email=el.value;
+                    break;
+                    case 3:
+                        objBoby.profession=(el.value!="falta por registrar")?el.value:"";
+                    break;
+                    case 4:
+                        objBoby.gender=(el.value)?el.value:"";
+                    break;
+                    case 5:
+                       idUser=el.value;
+                    break;
+                }
+                
+                //console.log(el.value);
             })
-            let cambio=document.querySelector(".imagen-user-cam-"+data.id);
-            cambio.innerHTML=` <img src="${data.data.urlImg}" alt="imgUser" class="imgUSer" id="imgU-${data.id}"></img>`
-        })
+    
+            const options = {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(objBoby)
+            };
+            fetch("/api/users/update/"+idUser,options)
+            .then(function(respuesta){
+                return respuesta.json()
+            })
+            .then((data)=>{
+                console.log(data);
+                let lista=document.querySelectorAll(".user-data-"+data.id);
+                let nombres={"name":"Nombre","email":"Email","profession":"Profesion","gender":"Genero"};
+                lista.forEach((el)=>{
+                   let auxTitulo=el.getAttribute("title");
+                   el.innerHTML=nombres[auxTitulo]+": \n "+data.data[auxTitulo];
+                })
+                let cambio=document.querySelector(".imagen-user-cam-"+data.id);
+                cambio.innerHTML=` <img src="${data.data.urlImg}" alt="imgUser" class="imgUSer" id="imgU-${data.id}"></img>`
+            })
+        }else{
+            alert("Ruta de imagen supera los 500 caracteres por favor buscar una ruta mas corta (ruta<500)");
+        }
         cerrarModal();
     }
 
@@ -252,7 +264,7 @@
                optionsDatos.forEach((elOp)=>{
                    let option=document.createElement("option");
                    option.innerHTML=elOp;
-                   console.log(genero,el.innerHTML.split(":")[1]);
+                   //console.log(genero,el.innerHTML.split(":")[1]);
                    if(genero==elOp){
                     option.setAttribute("selected", "selected");
                    }
@@ -261,7 +273,7 @@
            }else{
             datosForm[index].value=datos[index].innerHTML.split(":")[1];
            }
-           console.log(el.innerHTML.split(":"));
+           //console.log(el.innerHTML.split(":"));
        })
        document.querySelector(".user-item-edi-link").value=(document.querySelector("#imgU-"+id))?document.querySelector("#imgU-"+id).getAttribute("src"):"falta por registrar";
        document.querySelector(".user-id").value=id;
@@ -269,7 +281,7 @@
 
 function activar_formularioModal_edit_user(){
     let formModal=document.querySelector(".margin-formulario-modal");
-    console.log(formModal);
+    //console.log(formModal);
     if(formModal.classList.contains("active-form-edi")){
         formModal.classList.add("desative-form-edi");
         let cambio=setInterval(()=>{
@@ -299,7 +311,7 @@ function activar_formularioModal_edit_user(){
             return respuesta.json()
         })
         .then((data)=>{
-            console.log(data)
+            //console.log(data)
             let card=document.querySelector(".item-"+data.id);
             card.classList.add("eliminar-card");
             let rej=setInterval(()=>{
@@ -328,7 +340,7 @@ function activar_formularioModal_edit_user(){
              if(data.resultado.length>0){
                 alert("No se puede eliminar un usuario con card resgistradas, elimine las card y despues el usuario");
              }else{
-                 console.log(data,"Se puede eliminar",data.id);
+                 //console.log(data,"Se puede eliminar",data.id);
                 consulta("/api/users/delete/"+data.id,"DELETE",{},data.id);
              }
         })

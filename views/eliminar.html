@@ -86,7 +86,7 @@
     <script>
         document.querySelector(".main-eliminar").innerHTML+= `<div class="carga"></div>`;
         let key=JSON.parse(localStorage.getItem("userKey"));
-        console.log(key);
+        //console.log(key);
     if(key){
         const options = {
             method: "POST",
@@ -103,7 +103,7 @@
         .then((data)=>{
             document.querySelector(".carga").remove();
             let cards = document.querySelector(".cardEli");
-            console.log(cards);
+            //console.log(cards);
             cards.innerHTML="";
             for(let card of data){
                 cards.innerHTML+= `
@@ -147,7 +147,7 @@
             return respuesta.json()
         })
         .then((data)=>{
-            console.log(data,"mostrar")
+            //console.log(data,"mostrar")
             let card=document.querySelector(".item-"+data.id);
             card.classList.add("eliminar-card");
             let rej=setInterval(()=>{

@@ -1,11 +1,11 @@
 let botonMenu=document.querySelector(".btn-menu");
 let contador=1;
 let idUser=window.location.pathname;
-console.log(idUser);
-console.log(localStorage.getItem("userKey"));
+//console.log(idUser);
+//console.log(localStorage.getItem("userKey"));
 if(localStorage.getItem("userKey")){
     let key=JSON.parse(localStorage.getItem("userKey"));
-    console.log(key);
+    //console.log(key);
     if(key){
         let lista=document.querySelectorAll(".A_ruta");
         lista.forEach((el)=>{
@@ -26,7 +26,7 @@ if(localStorage.getItem("userKey")){
 document.addEventListener("click",(e)=>{
     //console.log(e.target.classList)
     if(e.target.matches(".btn-cerrar-login")){
-        console.log("Hola cerrar")
+        //console.log("Hola cerrar")
         localStorage.removeItem("userKey");
         window.location.href="/";
     }
@@ -79,7 +79,7 @@ document.addEventListener("click",(e)=>{
            titulo=document.querySelector("#tituloM").value,
            texto=document.querySelector("#textAM").value,
            key=JSON.parse(localStorage.getItem("userKey"));
-           console.log(key);
+           //console.log(key);
        const options = {
         method: "POST",
         headers: {
@@ -109,7 +109,7 @@ document.addEventListener("click",(e)=>{
     if(e.target.matches(".card-edit *")){
         let data=tomaDatos("."+e.target.attributes[0].value);
         data.push(e.target.attributes[0].value);
-        console.log(data);
+        //console.log(data);
         activar_formularioModal(data);
         btn_formularioModal("none","grid");
     }
@@ -200,7 +200,7 @@ function tomaDatos(nameSelec){
     let datos=document.querySelectorAll(nameSelec);
     let data=[]
     datos.forEach((el)=>{
-        console.log(el.innerHTML);
+        //console.log(el.innerHTML);
         data.push(el.innerHTML);
     })
     return data;
@@ -232,7 +232,7 @@ function activar_formularioModal(data){
     }
 }
 function mostrarCard(){
-    console.log("hola");
+    //console.log("hola");
     efectoCarga();
     let key=Number(JSON.parse(localStorage.getItem("userKey")));
     if(key!=undefined && (!Number.isNaN(key))){
@@ -243,7 +243,7 @@ function mostrarCard(){
             },
             body: JSON.stringify({})
           };
-        console.log(key);
+        //console.log(key);
         fetch("/api/read/"+key,options)
         .then(response => response.json())
         .then(data => {
