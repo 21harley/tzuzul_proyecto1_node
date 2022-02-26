@@ -11,13 +11,25 @@ const router = express.Router()
 // Definiendo el controlador
 const cardController = new CardController()
 
+//eliminar
+router.get('/eliminar',(request,response)=>{
+    return response.render("eliminar");
+})
+/*
 router.get('/eliminar',function(request,response){
     return response.sendFile(views("eliminar.html"))
 })
+*/
 
+//archivo
+router.get('/archivo',(request,response)=>{
+    return response.render("archivo");
+})
+/*
 router.get('/archivo',function(request,response){
     return response.sendFile(views("archivo.html"))
 })
+*/
 
 router.post("/api/read/:id",async (req,res)=>{
     const id = req.params.id;

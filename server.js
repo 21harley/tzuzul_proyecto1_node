@@ -12,6 +12,12 @@ function views(document){
 
 const app = express()
 
+
+//Utilizando template engines
+app.set("view engine",'pug')
+app.set("views","views")
+
+
 // Procesos intermedios
 // Middleware
 //Definieno carpeta de arhivos estáticos
@@ -29,11 +35,11 @@ app.use(userRoutes)
 app.use(cardRoutes)
 
 app.get('/',function(peticion,respuesta){
-    return respuesta.sendFile(views("index.html"))
+    return respuesta.render("index")
 })
 
 app.use(function(peticion,respuesta) {
-    respuesta.status(404).sendFile(views("NotFound.html"));
+    respuesta.status(404).render("NotFound");
 });
 
 app.listen(5000,function(){

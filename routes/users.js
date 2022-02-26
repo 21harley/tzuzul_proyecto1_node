@@ -14,6 +14,22 @@ const userController = new UserController()
 //router.use('/users')
 
 router.get('/registro',function(request,response){
+    return response.render("registro")
+})
+
+router.get('/tema',function(request,response){
+    return response.render("tema")
+})
+
+router.get('/creditos',function(request,response){
+    return response.render("creditos")
+})
+
+router.get('/cerrar',function(request,response){
+    return response.render("index")
+})
+/*
+router.get('/registro',function(request,response){
     return response.sendFile(views("registro.html"))
 })
 
@@ -28,7 +44,7 @@ router.get('/creditos',function(request,response){
 router.get('/cerrar',function(request,response){
     return response.sendFile(views("index.html"))
 })
-
+*/
 router.post('/registro',async function(request,response){
     //console.log(request.body) // {name: 'Tzuzul Code',email: 'mail@tzuzulcode.com',birthday: '2022-02-07'}
     const persona = request.body
@@ -54,12 +70,28 @@ router.post('/',async function(request,response){
     }
     
 })
-router.get("/app/:id",(req,res)=>{
-    return res.sendFile(views("app.html"))
+
+//users
+router.get("/usersPug",async (req,res)=>{
+    var users = await userController.readAll()
+    return res.render("users",{usuarios:users,title:"Usuarios"})
 })
+/*
 router.get("/users",(req,res)=>{
     return res.sendFile(views("users.html"))
 })
+*/
+
+//app
+router.get("/app/:id",(req,res)=>{
+    return res.render("app")
+})
+/*
+router.get("/app/:id",(req,res)=>{
+    return res.sendFile(views("app.html"))
+})
+*/
+
 router.get("/api/users",async (req,res)=>{
     var users = await userController.readAll()
     return res.json(users)

@@ -22,6 +22,12 @@ class CardController{
         console.log(results,"base datos")
         return {results,data,id}
     }
+    /**
+    async edit(id,data){
+        const user = await database.query("UPDATE users SET ? WHERE id=?",[data,id])
+        return user
+    }
+     */
 
     async updateCarD(data,id){
         const results = await database.query(`UPDATE card SET state=? WHERE id=?`,[data.state,id]);
